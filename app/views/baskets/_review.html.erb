@@ -1,0 +1,39 @@
+<% if items.empty? %>
+  <div class="basket-page__empty">
+    <p>Your basket is empty.</p>
+    <%= link_to "Browse events", root_path, class: "btn btn--add", data: { turbo_frame: "_top" } %>
+  </div>
+<% else %>
+  <div class="basket-page__items">
+    <% items.each do |item| %>
+      <div class="basket-page__item">
+        <div class="basket-page__item-details">
+          <span class="basket-page__item-category"><%= item.event.category %></span>
+          <h3 class="basket-page__item-title"><%= item.event.title %></h3>
+          <p class="basket-page__item-meta">
+            <%= item.event.instructor %> &middot; <%= item.event.location %>
+          </p>
+          <p class="basket-page__item-time">
+            <%= item.event.start_time.strftime("%A %-d %B, %H:%M") %> – <%= item.event.end_time.strftime("%H:%M") %>
+          </p>
+        </div>
+        <div class="basket-page__item-price-actions">
+          <span class="basket-page__item-price">£<%= "%.2f" % item.event.price_pounds %></span>
+          <%= button_to "Remove",
+                basket_item_path(item),
+                method: :delete,
+                class: "btn btn--remove",
+                data: { turbo_stream: true } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="basket-page__summary">
+    <div class="basket-page__total">
+      <span><%= items.count %> <%= "item".pluralize(items.count) %></span>
+      <span class="basket-page__total-amount">Total: £<%= "%.2f" % basket.total_pounds %></span>
+    </div>
+    <button class="btn btn--checkout" disabled>Proceed to checkout (coming soon)</button>
+  </div>
+<% end %>

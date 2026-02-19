@@ -1,0 +1,10 @@
+<div class="basket-page">
+  <header class="basket-page__header">
+    <h1>Your Basket</h1>
+    <%= link_to "← Back to events", root_path, class: "basket-page__back" %>
+  </header>
+
+  <%= turbo_frame_tag "basket_review" do %>
+    <%= render "baskets/review", basket: @basket, items: @items %>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<div class="events-page">
+  <header class="events-header">
+    <h1>Upcoming Classes & Workshops</h1>
+    <p class="events-header__subtitle">Browse and add multiple events to your basket, then book them all at once.</p>
+  </header>
+
+  <div class="events-grid">
+    <% @events.each do |event| %>
+      <% in_basket = current_basket.basket_items.any? { |item| item.event_id == event.id } %>
+      <%= turbo_frame_tag "event_#{event.id}" do %>
+        <%= render "events/card", event: event, in_basket: in_basket %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
