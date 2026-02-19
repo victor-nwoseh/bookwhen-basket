@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :basket_item do
-    basket { nil }
-    event { nil }
+    association :basket
+    association :event
   end
 end
