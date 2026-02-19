@@ -137,7 +137,7 @@ Open `http://localhost:3000`. Requires Ruby 4.0+, Rails 8.1, PostgreSQL. Set `PO
 
 ---
 
-## What I'd build next
+## What I could build next
 
 - **Real checkout flow** — integrate a payment provider (Stripe) and replace the "Proceed to checkout" placeholder with a real multi-item order summary and single-payment flow
 - **Conflict detection** — flag overlapping events at add-to-basket time (a common pain point for users booking back-to-back sessions at different venues)
