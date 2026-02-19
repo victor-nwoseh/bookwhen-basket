@@ -128,11 +128,12 @@ System tests run against Chrome via Selenium and exercise the full Turbo Streams
 git clone https://github.com/victor-nwoseh/bookwhen-basket
 cd bookwhen-basket
 bundle install
+export POSTGRES_PASSWORD=your_postgres_password
 rails db:create db:migrate db:seed
 rails server
 ```
 
-Open `http://localhost:3000`. Requires Ruby 4.0+, Rails 8.1, PostgreSQL.
+Open `http://localhost:3000`. Requires Ruby 4.0+, Rails 8.1, PostgreSQL. Set `POSTGRES_PASSWORD` to match your local Postgres credentials (omit if your Postgres instance requires no password).
 
 ---
 
