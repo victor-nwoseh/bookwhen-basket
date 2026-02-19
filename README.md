@@ -99,7 +99,7 @@ The third stream target (`basket_review`) means the basket review page stays liv
 
 ## Demo
 
-<video src="docs/demo.mp4" controls autoplay loop muted width="100%"></video>
+<video src="https://github.com/user-attachments/assets/c0f76da4-0f16-43e2-ba00-234ab5a04648" controls autoplay loop muted width="100%"></video>
 
 ---
 
