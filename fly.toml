@@ -1,0 +1,27 @@
+# fly.toml app configuration file generated for bookwhen-basket on 2026-02-19T14:33:26Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'bookwhen-basket'
+primary_region = 'lhr'
+console_command = '/rails/bin/rails console'
+
+[deploy]
+  release_command = "bin/rails db:migrate db:seed"
+
+[build]
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024
