@@ -1,0 +1,101 @@
+@use 'variables' as *;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: $text-base;
+  color: $grey-800;
+  background-color: $grey-50;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Two-column app shell: events grid + basket sidebar
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+    padding: $space-8;
+    max-width: calc(100% - #{$basket-width});
+  }
+
+  &__basket {
+    width: $basket-width;
+    flex-shrink: 0;
+    background: $white;
+    border-left: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+// Shared button styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-2 $space-4;
+  border-radius: $border-radius;
+  font-size: $text-sm;
+  font-weight: $weight-medium;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+
+  &--add {
+    background-color: $accent;
+    color: $white;
+    width: 100%;
+
+    &:hover {
+      background-color: $accent-dark;
+    }
+  }
+
+  &--remove {
+    background-color: transparent;
+    color: $red;
+    border: 1px solid $red;
+    font-size: $text-xs;
+    padding: $space-1 $space-2;
+
+    &:hover {
+      background-color: $red-light;
+    }
+  }
+
+  &--checkout {
+    display: block;
+    width: 100%;
+    background-color: $accent;
+    color: $white;
+    padding: $space-3 $space-4;
+    text-align: center;
+
+    &:hover:not([disabled]) {
+      background-color: $accent-dark;
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
