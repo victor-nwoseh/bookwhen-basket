@@ -1,0 +1,7 @@
+<%= turbo_stream.update "basket" do %>
+  <%= render "basket/panel", basket: @basket %>
+<% end %>
+
+<%= turbo_stream.update "event_#{@event.id}" do %>
+  <%= render "events/card", event: @event, in_basket: true %>
+<% end %>

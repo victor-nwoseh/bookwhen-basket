@@ -1,0 +1,40 @@
+<div class="basket-panel__header">
+  <h2 class="basket-panel__title">Your Basket</h2>
+  <% if basket.events.any? %>
+    <span class="basket-panel__count"><%= basket.events.count %> <%= "item".pluralize(basket.events.count) %></span>
+  <% end %>
+</div>
+
+<% if basket.events.none? %>
+  <p class="basket-panel__empty">Your basket is empty.</p>
+<% else %>
+  <ul class="basket-panel__items">
+    <% basket.basket_items.includes(:event).each do |item| %>
+      <li class="basket-panel__item">
+        <div class="basket-panel__item-info">
+          <span class="basket-panel__item-title"><%= item.event.title %></span>
+          <span class="basket-panel__item-time"><%= item.event.start_time.strftime("%a %-d %b, %H:%M") %></span>
+        </div>
+        <div class="basket-panel__item-actions">
+          <span class="basket-panel__item-price">£<%= "%.2f" % item.event.price_pounds %></span>
+          <%= button_to "✕",
+                basket_item_path(item),
+                method: :delete,
+                class: "basket-panel__remove",
+                data: { turbo_stream: true },
+                title: "Remove" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="basket-panel__footer">
+    <div class="basket-panel__total">
+      <span>Total</span>
+      <span class="basket-panel__total-amount">£<%= "%.2f" % basket.total_pounds %></span>
+    </div>
+    <% unless current_page?(basket_path) %>
+      <%= link_to "Review basket →", basket_path, class: "btn btn--checkout", data: { turbo_frame: "_top" } %>
+    <% end %>
+  </div>
+<% end %>
